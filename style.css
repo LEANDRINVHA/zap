@@ -1,29 +1,59 @@
-:root { --primary: #00a884; --dark: #111b21; --sent: #d9fdd3; }
-body { font-family: 'Inter', sans-serif; margin: 0; background: #d1d7db; height: 100vh; overflow: hidden; }
+:root {
+    --primary: #00ffa3; /* Verde neon para status online */
+    --accent: #00a884;
+    --dark-panel: rgba(17, 27, 33, 0.85);
+    --glass: rgba(255, 255, 255, 0.05);
+    --text-main: #e9edef;
+}
 
-/* Login */
-#loginScreen { position: fixed; inset: 0; background: var(--primary); display: flex; align-items: center; justify-content: center; z-index: 1000; }
-.login-box { background: white; padding: 40px; border-radius: 15px; width: 320px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
-.brand-header h1 { font-size: 22px; margin: 0; color: var(--dark); }
-.brand-header span { color: var(--primary); }
-input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; }
-.btn-main { background: var(--dark); color: white; width: 100%; padding: 12px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; margin-top: 10px; }
+body { 
+    background: radial-gradient(circle at top right, #111b21, #0a0a0a); 
+    color: var(--text-main);
+    font-family: 'Inter', sans-serif;
+}
 
-/* App */
-.app-container { display: flex; width: 100vw; height: 100vh; background: #fff; }
-.sidebar { width: 30%; max-width: 350px; border-right: 1px solid #ddd; display: flex; flex-direction: column; }
-.sidebar-header { background: #ededed; padding: 15px; border-bottom: 1px solid #ddd; }
-.avatar-circle { width: 40px; height: 40px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; }
-.contact-item { display: flex; padding: 15px; border-bottom: 1px solid #f2f2f2; cursor: pointer; }
-.contact-item.active { background: #ebebeb; }
-.avatar-mini { width: 45px; height: 45px; background: #ccc; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 12px; font-weight: bold; }
+/* Indicador Online Moderno */
+.status-indicator {
+    width: 10px;
+    height: 10px;
+    background: var(--primary);
+    border-radius: 50%;
+    display: inline-block;
+    box-shadow: 0 0 10px var(--primary);
+    margin-right: 5px;
+    animation: pulse 2s infinite;
+}
 
-.chat-area { flex: 1; background: #efeae2; display: flex; flex-direction: column; }
-.full-center { display: flex; align-items: center; justify-content: center; height: 100%; text-align: center; color: #8696a0; }
-.messages-container { flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; }
-.message { padding: 8px 12px; border-radius: 8px; max-width: 70%; font-size: 14px; }
-.sent { align-self: flex-end; background: var(--sent); }
-.input-bar { background: #f0f2f5; padding: 10px; display: flex; gap: 10px; }
-.input-bar input { flex: 1; margin: 0; }
-.btn-send { background: none; border: none; color: var(--primary); cursor: pointer; font-size: 20px; }
-.btn-invite { background: #25d366; color: white; width: 100%; border: none; padding: 10px; cursor: pointer; font-weight: bold; }
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.4; }
+    100% { opacity: 1; }
+}
+
+/* Login Elegante */
+.login-box {
+    background: var(--glass);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 50px;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+}
+
+/* Botão Especial de Remoção */
+.btn-danger-soft {
+    background: rgba(255, 69, 58, 0.1);
+    color: #ff453a;
+    border: 1px solid rgba(255, 69, 58, 0.2);
+    padding: 8px 15px;
+    border-radius: 8px;
+    font-size: 11px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 10px;
+}
+
+.btn-danger-soft:hover {
+    background: #ff453a;
+    color: white;
+}
