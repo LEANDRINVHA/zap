@@ -1,59 +1,43 @@
 :root {
-    --primary: #00ffa3; /* Verde neon para status online */
-    --accent: #00a884;
-    --dark-panel: rgba(17, 27, 33, 0.85);
+    --primary: #00ffa3;
+    --dark: #0b0e11;
+    --sidebar-bg: #111b21;
+    --chat-bg: #0a0a0a;
     --glass: rgba(255, 255, 255, 0.05);
-    --text-main: #e9edef;
 }
 
-body { 
-    background: radial-gradient(circle at top right, #111b21, #0a0a0a); 
-    color: var(--text-main);
-    font-family: 'Inter', sans-serif;
-}
+body { font-family: 'Inter', sans-serif; margin: 0; background: var(--dark); color: #e9edef; height: 100vh; overflow: hidden; }
 
-/* Indicador Online Moderno */
-.status-indicator {
-    width: 10px;
-    height: 10px;
-    background: var(--primary);
-    border-radius: 50%;
-    display: inline-block;
-    box-shadow: 0 0 10px var(--primary);
-    margin-right: 5px;
-    animation: pulse 2s infinite;
-}
+/* Status Dot Pulse */
+.status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 5px; }
+.status-dot.pulse { background: var(--primary); box-shadow: 0 0 8px var(--primary); animation: pulseDot 2s infinite; }
+.status-dot.off { background: #8696a0; }
+@keyframes pulseDot { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
 
-@keyframes pulse {
-    0% { opacity: 1; }
-    50% { opacity: 0.4; }
-    100% { opacity: 1; }
-}
+/* Login Glass */
+#loginScreen { position: fixed; inset: 0; background: radial-gradient(circle, #111b21 0%, #000 100%); display: flex; align-items: center; justify-content: center; z-index: 1000; }
+.login-box { background: var(--glass); backdrop-filter: blur(20px); padding: 40px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); width: 320px; text-align: center; }
+.brand-header h1 { color: #fff; margin: 0; }
+.brand-header span { color: var(--primary); }
+input { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white; padding: 12px; width: 100%; border-radius: 10px; margin: 10px 0; box-sizing: border-box; }
+.btn-main { background: var(--primary); color: #000; font-weight: bold; width: 100%; padding: 12px; border: none; border-radius: 10px; cursor: pointer; }
 
-/* Login Elegante */
-.login-box {
-    background: var(--glass);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 24px;
-    padding: 50px;
-    box-shadow: 0 25px 50px rgba(0,0,0,0.5);
-}
+/* Sidebar & Profile */
+.sidebar { width: 30%; background: var(--sidebar-bg); border-right: 1px solid rgba(255,255,255,0.1); display: flex; flex-direction: column; }
+.sidebar-header { padding: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.user-profile { display: flex; align-items: center; gap: 15px; position: relative; }
+.avatar-circle { width: 45px; height: 45px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #000; font-weight: bold; }
+.btn-lock { background: none; border: none; color: #ff453a; cursor: pointer; font-size: 18px; margin-left: auto; transition: 0.3s; }
+.btn-lock:hover { transform: scale(1.2); }
 
-/* Botão Especial de Remoção */
-.btn-danger-soft {
-    background: rgba(255, 69, 58, 0.1);
-    color: #ff453a;
-    border: 1px solid rgba(255, 69, 58, 0.2);
-    padding: 8px 15px;
-    border-radius: 8px;
-    font-size: 11px;
-    cursor: pointer;
-    transition: 0.3s;
-    margin-top: 10px;
-}
+/* Contact List */
+.contact-item { padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); cursor: pointer; transition: 0.3s; display: flex; align-items: center; gap: 12px; }
+.contact-item:hover, .contact-item.active { background: rgba(255,255,255,0.05); }
+.avatar-mini { width: 40px; height: 40px; background: #3b4a54; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; }
 
-.btn-danger-soft:hover {
-    background: #ff453a;
-    color: white;
-}
+/* Chat Area */
+.chat-area { flex: 1; background: var(--chat-bg); display: flex; flex-direction: column; }
+.chat-header { padding: 15px 25px; background: var(--sidebar-bg); border-bottom: 1px solid rgba(255,255,255,0.1); }
+.messages-container { flex: 1; padding: 20px; overflow-y: auto; background-image: url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png'); opacity: 0.8; }
+.input-bar { padding: 15px; background: var(--sidebar-bg); display: flex; gap: 15px; }
+.btn-invite { background: #25d366; color: white; border: none; width: 100%; padding: 12px; cursor: pointer; font-weight: bold; }
