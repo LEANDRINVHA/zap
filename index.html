@@ -45,8 +45,11 @@
                     <div class="avatar-circle">L</div>
                     <div class="user-status">
                         <strong id="meuNomeDisplay">Leandro®</strong>
-                        <span id="roleBadge">Proprietário</span>
+                        <div class="online-now"><span class="status-dot pulse"></span> Online</div>
                     </div>
+                    <button onclick="ChatApp.removerCredenciais()" class="btn-lock" title="Remover meu acesso">
+                        <i class="fas fa-user-shield"></i>
+                    </button>
                 </div>
             </header>
 
@@ -72,17 +75,20 @@
                 <div class="welcome-content">
                     <i class="fas fa-shield-halved fa-4x"></i>
                     <h2>Rede Interna EURO DIESEL®</h2>
-                    <p>Selecione um colaborador para iniciar.</p>
+                    <p>Selecione um colaborador para iniciar a consultoria técnica.</p>
                 </div>
             </div>
 
             <div id="mainChat" class="chat-active" style="display: none;">
                 <header class="chat-header">
-                    <h4 id="currentChatName">Nome</h4>
+                    <div class="chat-info">
+                        <h4 id="currentChatName">Nome</h4>
+                        <small id="currentChatStatus"></small>
+                    </div>
                 </header>
                 <div class="messages-container" id="msgBox"></div>
                 <div class="input-bar">
-                    <input type="text" id="msgInput" placeholder="Mensagem...">
+                    <input type="text" id="msgInput" placeholder="Escreva uma mensagem técnica...">
                     <button onclick="enviarMensagem()" class="btn-send"><i class="fas fa-paper-plane"></i></button>
                 </div>
             </div>
