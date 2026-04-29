@@ -4,12 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EURO DIESEL® | Gestão de Comunicação</title>
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -38,13 +34,11 @@
                 <button onclick="handleLogin()" class="btn-main">
                     ACESSAR SISTEMA <i class="fas fa-arrow-right"></i>
                 </button>
-                <p id="loginErrorMessage" class="error-text"></p>
             </div>
         </div>
     </section>
 
     <main class="app-container" id="appMain" style="display: none;">
-        
         <aside class="sidebar">
             <header class="sidebar-header">
                 <div class="user-profile">
@@ -53,10 +47,6 @@
                         <strong id="meuNomeDisplay">Leandro®</strong>
                         <span id="roleBadge">Proprietário</span>
                     </div>
-                </div>
-                <div class="header-actions">
-                    <i class="fas fa-comment-medical"></i>
-                    <i class="fas fa-ellipsis-v"></i>
                 </div>
             </header>
 
@@ -67,56 +57,38 @@
                 </div>
             </div>
 
-            <nav class="contact-list" id="contactList">
-                </nav>
+            <nav class="contact-list" id="contactList"></nav>
 
             <footer class="admin-panel" id="adminPanel" style="display: none;">
                 <button onclick="gerarConviteWhatsApp()" class="btn-invite">
-                    <i class="fab fa-whatsapp"></i> CONVIDAR COLABORADOR
+                    <i class="fab fa-whatsapp"></i> CONVIDAR NO WHATSAPP
                 </button>
                 <div id="inviteDisplay" class="invite-msg"></div>
             </footer>
         </aside>
 
         <section class="chat-area">
-            
             <div id="welcomeScreen" class="full-center">
                 <div class="welcome-content">
                     <i class="fas fa-shield-halved fa-4x"></i>
                     <h2>Rede Interna EURO DIESEL®</h2>
-                    <p>Selecione um colaborador na lista ao lado para iniciar a troca de informações técnicas e mensagens.</p>
+                    <p>Selecione um colaborador para iniciar.</p>
                 </div>
             </div>
 
             <div id="mainChat" class="chat-active" style="display: none;">
                 <header class="chat-header">
-                    <div class="chat-contact-info">
-                        <h4 id="currentChatName">Nome do Colaborador</h4>
-                        <span class="status-online">online</span>
-                    </div>
-                    <div class="chat-tools">
-                        <i class="fas fa-search"></i>
-                        <i class="fas fa-paperclip"></i>
-                    </div>
+                    <h4 id="currentChatName">Nome</h4>
                 </header>
-
-                <div class="messages-container" id="msgBox">
-                    </div>
-
+                <div class="messages-container" id="msgBox"></div>
                 <div class="input-bar">
-                    <i class="far fa-smile"></i>
-                    <input type="text" id="msgInput" placeholder="Escreva sua mensagem aqui...">
-                    <button onclick="enviarMensagem()" class="btn-send">
-                        <i class="fas fa-paper-plane"></i>
-                    </button>
+                    <input type="text" id="msgInput" placeholder="Mensagem...">
+                    <button onclick="enviarMensagem()" class="btn-send"><i class="fas fa-paper-plane"></i></button>
                 </div>
             </div>
         </section>
     </main>
 
-    <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-database-compat.js"></script>
     <script src="script.js"></script>
-
 </body>
 </html>
