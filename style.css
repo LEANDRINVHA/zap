@@ -1,35 +1,29 @@
-:root {
-    --primary: #00a884;
-    --dark: #111b21;
-    --light-bg: #f0f2f5;
-    --sent: #d9fdd3;
-}
+:root { --primary: #00a884; --dark: #111b21; --sent: #d9fdd3; }
+body { font-family: 'Inter', sans-serif; margin: 0; background: #d1d7db; height: 100vh; overflow: hidden; }
 
-body { font-family: 'Inter', sans-serif; margin: 0; background: #d1d7db; height: 100vh; display: flex; align-items: center; justify-content: center; }
+/* Login */
+#loginScreen { position: fixed; inset: 0; background: var(--primary); display: flex; align-items: center; justify-content: center; z-index: 1000; }
+.login-box { background: white; padding: 40px; border-radius: 15px; width: 320px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
+.brand-header h1 { font-size: 22px; margin: 0; color: var(--dark); }
+.brand-header span { color: var(--primary); }
+input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; }
+.btn-main { background: var(--dark); color: white; width: 100%; padding: 12px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; margin-top: 10px; }
 
-/* Estrutura do App */
-.app-container { width: 100vw; height: 100vh; background: #fff; display: flex; overflow: hidden; }
+/* App */
+.app-container { display: flex; width: 100vw; height: 100vh; background: #fff; }
+.sidebar { width: 30%; max-width: 350px; border-right: 1px solid #ddd; display: flex; flex-direction: column; }
+.sidebar-header { background: #ededed; padding: 15px; border-bottom: 1px solid #ddd; }
+.avatar-circle { width: 40px; height: 40px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; }
+.contact-item { display: flex; padding: 15px; border-bottom: 1px solid #f2f2f2; cursor: pointer; }
+.contact-item.active { background: #ebebeb; }
+.avatar-mini { width: 45px; height: 45px; background: #ccc; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 12px; font-weight: bold; }
 
-/* Sidebar */
-.sidebar { width: 350px; background: #fff; border-right: 1px solid #ddd; display: flex; flex-direction: column; }
-.sidebar-header { background: #ededed; padding: 10px 16px; display: flex; justify-content: space-between; align-items: center; }
-.contact-item { display: flex; align-items: center; padding: 12px; cursor: pointer; border-bottom: 1px solid #f0f2f5; transition: 0.2s; }
-.contact-item:hover, .contact-item.active { background: #f5f6f6; }
-.avatar-mini { width: 45px; height: 45px; background: #ccc; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px; font-weight: bold; }
-
-/* Chat Area */
 .chat-area { flex: 1; background: #efeae2; display: flex; flex-direction: column; }
-.chat-header { background: #ededed; padding: 10px 16px; border-left: 1px solid #ddd; }
-.messages-container { flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; }
-.message { padding: 8px 12px; border-radius: 8px; max-width: 60%; font-size: 14px; box-shadow: 0 1px 1px rgba(0,0,0,0.1); }
+.full-center { display: flex; align-items: center; justify-content: center; height: 100%; text-align: center; color: #8696a0; }
+.messages-container { flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; }
+.message { padding: 8px 12px; border-radius: 8px; max-width: 70%; font-size: 14px; }
 .sent { align-self: flex-end; background: var(--sent); }
-.received { align-self: flex-start; background: #fff; }
-
-/* Input Bar */
-.input-bar { background: #f0f2f5; padding: 10px 16px; display: flex; align-items: center; gap: 10px; }
-.input-bar input { flex: 1; border: none; padding: 10px; border-radius: 20px; outline: none; }
-
-/* Login (Glassmorphism) */
-#loginScreen { position: fixed; inset: 0; background: var(--primary); z-index: 1000; display: flex; align-items: center; justify-content: center; }
-.login-box { background: white; padding: 40px; border-radius: 20px; width: 350px; text-align: center; }
-.btn-main { background: var(--dark); color: white; border: none; width: 100%; padding: 15px; border-radius: 10px; cursor: pointer; font-weight: bold; }
+.input-bar { background: #f0f2f5; padding: 10px; display: flex; gap: 10px; }
+.input-bar input { flex: 1; margin: 0; }
+.btn-send { background: none; border: none; color: var(--primary); cursor: pointer; font-size: 20px; }
+.btn-invite { background: #25d366; color: white; width: 100%; border: none; padding: 10px; cursor: pointer; font-weight: bold; }
