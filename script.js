@@ -2,39 +2,34 @@ class EuroDieselChat {
     constructor() {
         this.colaboradores = JSON.parse(localStorage.getItem('euro_diesel_staff')) || [
             { id: 1, nome: "Manoel", mensagens: [] },
-            { id: 2, nome: "Eduardo", mensagens: [] }
+            { id: 2, nome: "Eduardo", mensagens: [] },
+            { id: 3, nome: "Vitor", mensagens: [] }
         ];
-        this.adminKey = "EURO2026"; // Sua senha Master
+        this.adminKey = "EURO2026";
         this.usuarioLogado = null;
         this.chatAtivoId = null;
         this.renderizarLista();
     }
 
-    // Trava de Segurança
     autenticar(nome, senha, codigo) {
-        if (nome.toLowerCase() === 'leandro') {
+        const n = nome.toLowerCase().trim();
+        if (n === 'leandro') {
             return senha === this.adminKey;
         }
-        // Colaboradores precisam de um código com 8+ caracteres começando com EURO-
-        return codigo.startsWith("EURO-") && codigo.length >= 10;
+        return codigo.toUpperCase().startsWith("EURO-");
     }
 
     renderizarLista() {
         const list = document.getElementById('contactList');
-        if(!list) return;
+        if (!list) return;
         list.innerHTML = '';
-        
         this.colaboradores.forEach(colab => {
             const item = document.createElement('div');
             item.className = `contact-item ${this.chatAtivoId === colab.id ? 'active' : ''}`;
             item.onclick = () => this.abrirChat(colab.id);
             item.innerHTML = `
                 <div class="avatar-mini">${colab.nome[0]}</div>
-                <div class="contact-info">
-                    <h4>${colab.nome}</h4>
-                    <p>Clique para conversar</p>
-                </div>
-            `;
+                <div class="contact-info"><h4>${colab.nome}</h4><p>Online</p></div>`;
             list.appendChild(item);
         });
     }
@@ -65,11 +60,10 @@ class EuroDieselChat {
 
 const ChatApp = new EuroDieselChat();
 
-// Funções de Interface (UI)
 function toggleAdminFields(valor) {
     const adminArea = document.getElementById('adminArea');
     const colabArea = document.getElementById('colabArea');
-    if (valor.toLowerCase() === "leandro") {
+    if (valor.toLowerCase().trim() === "leandro") {
         adminArea.style.display = "block";
         colabArea.style.display = "none";
     } else {
@@ -79,19 +73,15 @@ function toggleAdminFields(valor) {
 }
 
 function handleLogin() {
-    const nome = document.getElementById('userNameInput').value;
+    const nome = document.getElementById('userNameInput').value.trim();
     const senha = document.getElementById('adminPassField').value;
-    const codigo = document.getElementById('accessCodeInput').value;
+    const codigo = document.getElementById('accessCodeInput').value.trim();
 
     if (ChatApp.autenticar(nome, senha, codigo)) {
-        ChatApp.usuarioLogado = nome;
         document.getElementById('loginScreen').style.display = 'none';
         document.getElementById('appMain').style.display = 'flex';
-        document.getElementById('meuNomeDisplay').innerText = nome + "®";
-        
-        if(nome.toLowerCase() === 'leandro') {
-            document.getElementById('adminPanel').style.display = 'block';
-        }
+        document.getElementById('meuNomeDisplay').innerText = nome.toUpperCase() + "®";
+        if (nome.toLowerCase() === 'leandro') document.getElementById('adminPanel').style.display = 'block';
     } else {
         alert("Acesso Negado! Verifique seus dados.");
     }
@@ -99,8 +89,7 @@ function handleLogin() {
 
 function enviarMensagem() {
     const input = document.getElementById('msgInput');
-    if(!input.value || !ChatApp.chatAtivoId) return;
-
+    if (!input.value || !ChatApp.chatAtivoId) return;
     const colab = ChatApp.colaboradores.find(c => c.id === ChatApp.chatAtivoId);
     colab.mensagens.push({ tipo: 'sent', texto: input.value });
     input.value = '';
@@ -109,7 +98,7 @@ function enviarMensagem() {
 
 function gerarConviteWhatsApp() {
     const token = `EURO-${Math.random().toString(36).substring(2, 7).toUpperCase()}`;
-    const msg = encodeURIComponent(`Olá! Leandro® convidou você para o sistema EURO DIESEL®.\nSeu código de acesso: ${token}`);
-    window.open(`https://wa.me/5569981128233?text=${msg}`);
-    document.getElementById('inviteDisplay').innerText = "Convite gerado: " + token;
+    const texto = encodeURIComponent(`Olá! Leandro® convidou você para o chat EURO DIESEL®.\nCódigo: ${token}\nAcesse: ${window.location.href}`);
+    window.open(`https://wa.me/5569981128233?text=${texto}`);
+    document.getElementById('inviteDisplay').innerText = "Convite: " + token;
 }
